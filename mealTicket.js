@@ -102,7 +102,7 @@ const getTicket = (peopleName, type, food) => {
     user += 500;
   }
 
-  return { name: peopleName, price: user };
+  return `${peopleName} ${user}`;
   // 사람 이름, 사람 타입, 음식
   // return {name: 이름, price: 내야하는 금액}
   // return '찾았다 요놈!'
