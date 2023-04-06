@@ -53,7 +53,7 @@ const todoControl = (command, value) => {
 const createTodo = (newTodo) => {
   // todos에 새로운 todo를 삽입
 
-  const { id, title, text } = newTodo;
+  const { id, title, text } = newTodo; // 비구조화 할당, newTodo의 id, title, text를 각각에 할당
   todos.push({ id, title, text });
 };
 
@@ -86,14 +86,13 @@ const updateTodo = (targetTodo) => {
 /** @param {number} id */
 const deleteTodo = (id) => {
   // 삭제하는 기능
-  const filterTodo = todos.filter((element) => element.id !== id); // todos 배열에서 id가 일치하지 않는 것들을 필터링하여 filterTodo에 저장
-  if (filterTodo.length === todos.length) {
-    // 필터링 된 배열과 원래의 todos 배열의 길이가 같다는 것은, 제거할 것이 없다는 것(즉, id에 맞는 요소가 todos에 없음)을 의미함. why? 필터링 된 배열은 todos 배열에서 id와 일치하는 요소가 제거된 새로운 배열이기 때문.
-    // 따라서 필터링 된 배열의 길이와 todos 배열의 길이가 같다면, id에 맞는 요소가 todos 배열에 없다는 것.
-    console.log(`id = ${id}에 맞는 todo를 찾을 수 없습니다.`); // 맞는 todo를 찾을 수 없다는 것을 출력
+
+  if (todos.findIndex((element) => element.id === id) === -1) {
+    // todos를 순회하면서 삭제하려는 id를 찾는데, 찾지 못한다면,
+    console.log(`id = ${id}에 맞는 todo를 찾을 수 없습니다.`); // id에 맞는 todo를 찾을 수 없다고 출력
   } else {
-    // 그렇지 않다면,
-    todos = filterTodo; // 필터링 된 배열을 todo에 다시 할당
+    // id를 찾았다면,
+    todos = todos.filter((element) => element.id !== id); // filter를 통해 todos에 재할당
   }
 };
 /*
