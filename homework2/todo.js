@@ -33,6 +33,7 @@ let id = 0;
  * @param {'create' | 'read' | 'update' | 'delete'} command
  * @param {{ id: number, title: string, text: string } | null | number} value
  * */
+
 const todoControl = (command, value) => {
   if (command === "create") {
     createTodo(value);
@@ -51,8 +52,9 @@ const todoControl = (command, value) => {
 /** @param {{ id: number, title: string, text: string }} newTodo */
 const createTodo = (newTodo) => {
   // todos에 새로운 todo를 삽입
-  const item = { id: newTodo.id, title: newTodo.title, text: newTodo.text };
-  todos.push(item);
+
+  const { id, title, text } = newTodo;
+  todos.push({ id, title, text });
 };
 
 // 출력 형식: 'id: 0, title: 타이틀, text: 텍스트'
